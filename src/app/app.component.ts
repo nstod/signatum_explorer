@@ -56,7 +56,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   setAddresses(input: string) {
     this.addresses = input;
-    this.cookieService.set(this.cookieName, this.addresses);
+    this.cookieService.set(this.cookieName, this.addresses, new Date(2037, 1, 1));
     this.updateWallets();
   }
 
