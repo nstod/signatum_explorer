@@ -50,7 +50,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.cryptopiaService.getMarketPrice('SIGT', 'BTC').subscribe(data => { this.sigt = data; this.updateValue(); });
     this.cryptopiaService.getMarketPrice('BTC', 'USDT').subscribe(data => { this.btc = data; this.updateValue(); });
     for (let wallet of this.wallets) {
-      this.signatumService.getBalance(wallet.Address).subscribe(data => { wallet.Balance = data; this.updateValue(); });
+      if (isNaN(Number(wallet.Address))) {
+        this.signatumService.getBalance(wallet.Address).subscribe(data => { wallet.Balance = data; this.updateValue(); });
+      }
     }
   }
 
@@ -67,7 +69,12 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     for (let address of this.addresses.split(',')) {
-      this.wallets.push(new Wallet(address));
+      let value = parseInt(address);
+      if (isNaN(value)) {
+        value = 0;
+      }
+
+      this.wallets.push(new Wallet(address, value));
     }
 
     this.calculate();
