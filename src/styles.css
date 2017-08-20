@@ -45,3 +45,7 @@ body {
     color: darkgrey;
     word-wrap: break-word;
 }
+
+.addressInput {
+    color: black;
+}
