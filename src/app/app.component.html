@@ -1,8 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <div class="container">
-      <img src="assets/logo.png" width="150"/>
-      <div class="coins">
+    <img src="assets/logo.png" width="150" />
+    <div class="coins">
       <div class="details">{{ balance | number:'1.2-2' }}</div>
     </div>
     <div class="current">
@@ -12,16 +12,19 @@
       <div class="details">SIGT: ${{ sigtValue | number:'1.4-4' }}</div>
     </div>
     <div class="low">
-        <div class="value">${{ balance * sigt.Low * btc.Low | number:'1.2-2' }}</div>
-        <div class="sigt">SIGT: {{ sigt.Low | number:'1.8-8' }}</div>
-        <div class="details">BTC: ${{ btc.Low | number:'1.2-2' }}</div>
-        <div class="details">SIGT: ${{ sigt.Low * btc.Low | number:'1.4-4' }}</div>
-      </div>
-      <div class="high">
+      <div class="value">${{ balance * sigt.Low * btc.Low | number:'1.2-2' }}</div>
+      <div class="sigt">SIGT: {{ sigt.Low | number:'1.8-8' }}</div>
+      <div class="details">BTC: ${{ btc.Low | number:'1.2-2' }}</div>
+      <div class="details">SIGT: ${{ sigt.Low * btc.Low | number:'1.4-4' }}</div>
+    </div>
+    <div class="high">
       <div class="value">${{ balance * sigt.High * btc.High | number:'1.2-2' }}</div>
       <div class="sigt">SIGT: {{ sigt.High | number:'1.8-8' }}</div>
       <div class="details">BTC: ${{ btc.High | number:'1.2-2' }}</div>
       <div class="details">SIGT: ${{ sigt.High * btc.High | number:'1.4-4' }}</div>
     </div>
+    <div class="addresses">{{ addresses }}</div>
+    <input #addressInput/>
+    <button (click)="setAddresses(addressInput.value)">Submit</button>
   </div>
 </div>

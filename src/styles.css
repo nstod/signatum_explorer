@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     background-color: black;
+    color: white;
     font-family: Helvetica;
 }
 
@@ -41,4 +42,10 @@ body {
 
 .coins {
     color: white;
+}
+
+.addresses {
+    padding: 20px;
+    font-size: 12px;
+    color: darkgrey;
 }
