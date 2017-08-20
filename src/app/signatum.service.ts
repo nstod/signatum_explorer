@@ -9,7 +9,7 @@ export class SignatumService {
   ) {}
 
   getBalance(account: string) {
-    return this.http.get(`http://explorer.signatum.io/ext/getbalance/` + account)
+    return this.http.get(`http://cors-anywhere.herokuapp.com/http://explorer.signatum.io/ext/getbalance/` + account)
     .map((res:Response) => parseFloat(res.text()));
   }
 
