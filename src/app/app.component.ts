@@ -4,6 +4,7 @@ import { SignatumService } from './signatum.service';
 import { Wallet } from './wallet';
 import { Subscription } from "rxjs";
 import { Observable } from "rxjs/Rx";
+import { Coin } from './coin';
 
 @Component({
   selector: 'app-root',
@@ -21,8 +22,9 @@ export class AppComponent implements OnInit, OnDestroy {
       this.wallets.push(new Wallet('BS33RLFyKxqZFED16UGqCda83H3pPB1WVM'));
     }
   balance = 0;
-  sigtPrice = 0;
-  btcPrice = 0;
+  sigt = new Coin(0, 0, 0);
+  btc = new Coin(0, 0, 0);
+  sigtValue = 0;
   value = 0;
   json = '';
   subscription: Subscription;
@@ -38,20 +40,25 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   calculate() {
-    this.cryptopiaService.getMarketPrice('SIGT', 'BTC').subscribe(data => { this.sigtPrice = data; this.updateValue(); });
-    this.cryptopiaService.getMarketPrice('BTC', 'USDT').subscribe(data => { this.btcPrice = data; this.updateValue(); });
+    this.cryptopiaService.getMarketPrice('SIGT', 'BTC').subscribe(data => { this.sigt = data; this.updateValue(); });
+    this.cryptopiaService.getMarketPrice('BTC', 'USDT').subscribe(data => { this.btc = data; this.updateValue(); });
     for (let wallet of this.wallets) {
       this.signatumService.getBalance(wallet.Address).subscribe(data => { wallet.Balance = data; this.updateValue(); });
     }
   }
 
   updateValue() {
+    if (!this.sigt || !this.btc) {
+      return;
+    }
+
     let tempValue = 0;
     for (let wallet of this.wallets) {
       tempValue += wallet.Balance;
     }
 
     this.balance = tempValue;
-    this.value = this.balance * this.sigtPrice * this.btcPrice;
+    this.sigtValue = this.sigt.Value * this.btc.Value;
+    this.value = this.balance * this.sigtValue;
   }
 }

@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: black;
+    font-family: Helvetica;
+}
+
+.container {
+    margin: auto;
+    width: 70%;
+    text-align: center;
+}
+
+.value {
+    font-weight: bold;
+    font-size: 50px;
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+
+.sigt {
+    font-size: 20px;
+    padding: 5px;
+}
+
+.details {
+    font-size: 15px;
+    padding: 5px;
+}
+
+.low {
+    color: darkred;
+}
+
+.current {
+    color: white;
+}
+
+.high {
+    color: darkgreen;
+}
+
+.coins {
+    color: white;
+}

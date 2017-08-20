@@ -1,9 +1,27 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
-    Signatum status
-  </h1>
-  <p>Total Value: ${{ value | number:'1.2-2' }}</p>
-  <p>SIGT: {{ sigtPrice | number:'1.8-8' }}</p>
-  <p>Balance: {{ balance | number:'1.2-2' }}</p>
+  <div class="container">
+      <img src="assets/logo.png" width="150"/>
+      <div class="coins">
+      <div class="details">{{ balance | number:'1.2-2' }}</div>
+    </div>
+    <div class="current">
+      <div class="value">${{ balance * sigt.Value * btc.Value | number:'1.2-2' }}</div>
+      <div class="sigt">SIGT: {{ sigt.Value | number:'1.8-8' }}</div>
+      <div class="details">BTC: ${{ btc.Value | number:'1.2-2' }}</div>
+      <div class="details">SIGT: ${{ sigtValue | number:'1.4-4' }}</div>
+    </div>
+    <div class="low">
+        <div class="value">${{ balance * sigt.Low * btc.Low | number:'1.2-2' }}</div>
+        <div class="sigt">SIGT: {{ sigt.Low | number:'1.8-8' }}</div>
+        <div class="details">BTC: ${{ btc.Low | number:'1.2-2' }}</div>
+        <div class="details">SIGT: ${{ sigt.Low * btc.Low | number:'1.4-4' }}</div>
+      </div>
+      <div class="high">
+      <div class="value">${{ balance * sigt.High * btc.High | number:'1.2-2' }}</div>
+      <div class="sigt">SIGT: {{ sigt.High | number:'1.8-8' }}</div>
+      <div class="details">BTC: ${{ btc.High | number:'1.2-2' }}</div>
+      <div class="details">SIGT: ${{ sigt.High * btc.High | number:'1.4-4' }}</div>
+    </div>
+  </div>
 </div>
