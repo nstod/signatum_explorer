@@ -3,11 +3,6 @@ body {
     background-color: black;
     color: white;
     font-family: Helvetica;
-}
-
-.container {
-    margin: auto;
-    width: 70%;
     text-align: center;
 }
 
