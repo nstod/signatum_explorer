@@ -38,7 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    let timer = Observable.timer(0, 10000);
+    let timer = Observable.timer(0, 30000);
     this.subscription = timer.subscribe(() => this.calculate());
   }
 
