@@ -95,6 +95,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.balance = tempValue;
     this.sigtValue = this.sigt.Value * this.btc.Value;
     this.value = this.balance * this.sigtValue;
-    this.titleService.setTitle('Signatum - ' + this.sigt.Value);
+    this.titleService.setTitle('Signatum - ' + this.sigt.Value.toFixed(8));
   }
 }
