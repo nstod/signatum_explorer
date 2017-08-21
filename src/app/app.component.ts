@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { CryptopiaService } from './cryptopia.service';
 import { SignatumService } from './signatum.service';
 import { Wallet } from './wallet';
@@ -30,7 +31,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private cryptopiaService: CryptopiaService,
     private signatumService: SignatumService,
-    private cookieService: CookieService) {
+    private cookieService: CookieService,
+    private titleService: Title) {
     if (this.cookieService.check(this.cookieName)) {
       this.addresses = this.cookieService.get(this.cookieName);
       this.updateWallets();
@@ -93,5 +95,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.balance = tempValue;
     this.sigtValue = this.sigt.Value * this.btc.Value;
     this.value = this.balance * this.sigtValue;
+    this.titleService.setTitle('Signatum - ' + this.sigt.Value);
   }
 }
