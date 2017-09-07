@@ -9,7 +9,7 @@ export class SignatumService {
   ) {}
 
   getBalance(account: string) {
-    return this.http.get(`http://signatum-cors.azurewebsites.net/explorer.signatum.io/ext/getbalance/` + account)
+    return this.http.get(`http://signatum-cors.azurewebsites.net/explorer.signatum.download/ext/getbalance/` + account)
     .map((res:Response) => parseFloat(res.text()));
   }
 
