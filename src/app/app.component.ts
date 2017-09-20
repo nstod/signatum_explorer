@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { CryptopiaService } from './cryptopia.service';
+import { YobitService } from './yobit.service';
 import { SignatumService } from './signatum.service';
 import { Wallet } from './wallet';
 import { Subscription } from "rxjs";
@@ -10,7 +10,7 @@ import { CookieService } from 'ng2-cookies';
 
 @Component({
   selector: 'app-root',
-  providers: [CryptopiaService, SignatumService, CookieService],
+  providers: [YobitService, SignatumService, CookieService],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly cookieName = "sigtaddreses";
 
   constructor(
-    private cryptopiaService: CryptopiaService,
+    private yobitService: YobitService,
     private signatumService: SignatumService,
     private cookieService: CookieService,
     private titleService: Title) {
@@ -49,8 +49,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   calculate() {
-    this.cryptopiaService.getMarketPrice('SIGT', 'BTC').subscribe(data => { this.sigt = data; this.updateValue(); });
-    this.cryptopiaService.getMarketPrice('BTC', 'USDT').subscribe(data => { this.btc = data; this.updateValue(); });
+    this.yobitService.getMarketPrice('sigt', 'btc').subscribe(data => { this.sigt = data; this.updateValue(); });
+    this.yobitService.getMarketPrice('btc', 'usd').subscribe(data => { this.btc = data; this.updateValue(); });
     for (let wallet of this.wallets) {
       if (isNaN(Number(wallet.Address))) {
         this.signatumService.getBalance(wallet.Address).subscribe(data => { wallet.Balance = data; this.updateValue(); });
